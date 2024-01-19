@@ -88,7 +88,16 @@ Button(action: {
 ```
 
 ### 🔧 Exercice 4
-
+On instancie une variable `dismiss` de type `DismissAction` grâce à `@Environment`. 
 ```swift
 @Environment(\.dismiss) private var dismiss
+```
+On appelle `dismiss()` lors de l'ajout d'un item, cela a pour effet de fermer la vue.
+```swift
+Button(action: {
+        inventory.addItem(item: $name.wrappedValue)
+        dismiss()
+}, label: {
+        Text("Ajouter")
+})
 ```
