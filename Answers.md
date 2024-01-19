@@ -47,8 +47,6 @@ En placant `@State` devant la liste `loot`, on déclare la liste comme un état 
 
 ### 🔧 Exercice 1
 Si l'ajout d'item ne fonctionne pas, c'est parce que le composant n'est pas re-rendu, puisqu'il n'a pas détecté de modifications dans l'état `inventory`.
-J'obtiens dans la console l'erreur `ForEach<Array<String>, String, Text>: the ID Magie de feu occurs multiple times within the collection, this will give undefined results!`.
-Cette erreur s'explique par le fait que les items rajoutés aient tous le même nom, ainsi SwiftUI ne peut pas déterminer l'identifiant unique pour chaque élément dans le ForEach. Il s'attend à ce que chaque élément ait un identifiant unique, mais avec deux éléments portant la même valeur, cela crée une ambiguïté.
 
 
 ### 🔧 Exercice 2
@@ -72,3 +70,5 @@ struct ContentView: View {
 ```
 
 On utilise `@StateObject`, car il a l'avantage de ne pas être re-créé lors du rendu de la vue, contrairement à `@ObservedState`. On n'utilisera pas non plus `@State` qui n'est pas fait pour accueuillir des objets.
+J'obtiens dans la console l'erreur `ForEach<Array<String>, String, Text>: the ID Magie de feu occurs multiple times within the collection, this will give undefined results!`.
+Cette erreur s'explique par le fait que les items rajoutés aient tous le même nom, ainsi SwiftUI ne peut pas déterminer l'identifiant unique pour chaque élément dans le ForEach. Il s'attend à ce que chaque élément ait un identifiant unique, mais avec deux éléments portant la même valeur, cela crée une ambiguïté.
