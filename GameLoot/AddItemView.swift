@@ -8,31 +8,58 @@
 import SwiftUI
 
 struct AddItemView: View {
-    @State private var name: String = ""
-    @State private var rarity: Rarity = .common
-    @EnvironmentObject var inventory : Inventory
+    @State private var lootItem: LootItem = LootItem.emptyLootItem
+    @State private var isAttackItem: Bool = false
+    @EnvironmentObject private var inventory: Inventory
     @Environment(\.dismiss) private var dismiss
-
+    
     var body: some View {
         Form {
             Section {
-                TextField("Nom de l'objet", text: $name)
-                Picker("Rareté", selection: $rarity) {
+                TextField("Nom de l'objet", text: $lootItem.name)
+                Picker("Rareté", selection: $lootItem.rarity) {
                     ForEach(Rarity.allCases, id: \.self) { rarity in
-                        Text(String(describing: rarity).capitalized)
+                        HStack(alignment: .center, spacing: 3) {
+                            Text(String(describing: rarity).capitalized)
+                        }
                     }
                 }
-                Button(action: {
-                    inventory.addItem(item: $name.wrappedValue)
-                    dismiss()
-                }, label: {
-                    Text("Ajouter")
-                })
             }
+            Section {
+                Picker("Jeu", selection: $lootItem.game) {
+                    ForEach(MockData.availableGames, id: \.self) { game in
+                        Text(game.name)
+                    }
+                }
+                
+            Stepper("Combien : \(lootItem.quantity)", value: $lootItem.quantity, in: 0...100, step: 1)
+                
+            }
+            
+            Section {
+                Toggle("Item d'attaque ?", isOn: $isAttackItem)
+            }
+            
+            Section {
+                Text("Type : " + $lootItem.type.wrappedValue.getEmoji())
+                Picker("Type", selection: $lootItem.type) {
+                    ForEach(ItemType.allCases, id: \.self) { tag in
+                        Text(tag.getEmoji())
+                    }
+                  }.pickerStyle(.palette)
+
+            }
+
+
+            Button(action: {
+                inventory.addItem(item: lootItem)
+                dismiss()
+            }, label: {
+                Text("Ajouter l'objet")
+            })
         }
     }
 }
-
 
 #Preview {
     AddItemView()

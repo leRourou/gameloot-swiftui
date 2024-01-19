@@ -8,10 +8,10 @@
 import SwiftUI
 
 class Inventory: ObservableObject {
-    @Published var loot = ["Epée", "Bouclier", "Armure"]
+    @Published var loots : [LootItem] = MockData.lootItemsMock
     
-    func addItem(item: String) {
-        loot.append(item)
+    func addItem(item: LootItem) {
+        loots.append(item)
     }
 }
 
@@ -21,21 +21,25 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            Button(action: {
-                inventory.addItem(item: "Magie de feu")
-            }, label: {
-                Text("Ajouter")
-            })
             List {
-                ForEach(inventory.loot, id: \.self) { item in
-                    Text(item)
+                ForEach(inventory.loots, id: \.self) { item in
+                    NavigationLink {
+                        LootDetailView(item: item)
+                        } label: {
+                            HStack(alignment: .center, spacing: 3) {
+                                Image(systemName: "circle.fill")
+                                    .renderingMode(.template)
+                                    .foregroundColor(item.rarity.getColor())
+                                Text("\(item.type.getEmoji()) \(item.name)")
+                            }
+                        }
                 }
             }
             .sheet(isPresented: $showAddItemView, content: {
                     AddItemView()
                           .environmentObject(inventory)
                 })
-            .navigationBarTitle("Loot")
+            .navigationBarTitle("👝 Inventory")
             .toolbar(content: {
                 ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                     Button(action: {

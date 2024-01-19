@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ItemType {
+enum ItemType: CaseIterable {
     case magic;
     case fire;
     case ice;
