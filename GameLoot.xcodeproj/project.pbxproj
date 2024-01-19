@@ -14,6 +14,11 @@
 		058E5E492B5A7B1E0091D344 /* GameLootTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E5E482B5A7B1E0091D344 /* GameLootTests.swift */; };
 		058E5E532B5A7B1F0091D344 /* GameLootUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E5E522B5A7B1F0091D344 /* GameLootUITests.swift */; };
 		058E5E552B5A7B1F0091D344 /* GameLootUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E5E542B5A7B1F0091D344 /* GameLootUITestsLaunchTests.swift */; };
+		058E5E622B5A83DB0091D344 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E5E612B5A83DB0091D344 /* AddItemView.swift */; };
+		058E5E642B5AA99A0091D344 /* LootItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E5E632B5AA99A0091D344 /* LootItem.swift */; };
+		058E5E662B5AAA290091D344 /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E5E652B5AAA290091D344 /* ItemType.swift */; };
+		058E5E682B5AAB420091D344 /* Rarity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E5E672B5AAB420091D344 /* Rarity.swift */; };
+		058E5E6A2B5AAB610091D344 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E5E692B5AAB610091D344 /* Game.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +49,11 @@
 		058E5E4E2B5A7B1F0091D344 /* GameLootUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameLootUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		058E5E522B5A7B1F0091D344 /* GameLootUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLootUITests.swift; sourceTree = "<group>"; };
 		058E5E542B5A7B1F0091D344 /* GameLootUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLootUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		058E5E612B5A83DB0091D344 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
+		058E5E632B5AA99A0091D344 /* LootItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LootItem.swift; sourceTree = "<group>"; };
+		058E5E652B5AAA290091D344 /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
+		058E5E672B5AAB420091D344 /* Rarity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rarity.swift; sourceTree = "<group>"; };
+		058E5E692B5AAB610091D344 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +104,11 @@
 		058E5E362B5A7B1C0091D344 /* GameLoot */ = {
 			isa = PBXGroup;
 			children = (
+				058E5E6C2B5AACFD0091D344 /* Structs */,
+				058E5E6B2B5AACC80091D344 /* Enums */,
 				058E5E372B5A7B1C0091D344 /* GameLootApp.swift */,
 				058E5E392B5A7B1C0091D344 /* ContentView.swift */,
+				058E5E612B5A83DB0091D344 /* AddItemView.swift */,
 				058E5E3B2B5A7B1E0091D344 /* Assets.xcassets */,
 				058E5E3D2B5A7B1E0091D344 /* Preview Content */,
 			);
@@ -125,6 +138,24 @@
 				058E5E542B5A7B1F0091D344 /* GameLootUITestsLaunchTests.swift */,
 			);
 			path = GameLootUITests;
+			sourceTree = "<group>";
+		};
+		058E5E6B2B5AACC80091D344 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				058E5E652B5AAA290091D344 /* ItemType.swift */,
+				058E5E672B5AAB420091D344 /* Rarity.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		058E5E6C2B5AACFD0091D344 /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				058E5E692B5AAB610091D344 /* Game.swift */,
+				058E5E632B5AA99A0091D344 /* LootItem.swift */,
+			);
+			path = Structs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,7 +288,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				058E5E682B5AAB420091D344 /* Rarity.swift in Sources */,
 				058E5E3A2B5A7B1C0091D344 /* ContentView.swift in Sources */,
+				058E5E6A2B5AAB610091D344 /* Game.swift in Sources */,
+				058E5E622B5A83DB0091D344 /* AddItemView.swift in Sources */,
+				058E5E662B5AAA290091D344 /* ItemType.swift in Sources */,
+				058E5E642B5AA99A0091D344 /* LootItem.swift in Sources */,
 				058E5E382B5A7B1C0091D344 /* GameLootApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
