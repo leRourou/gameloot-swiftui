@@ -71,4 +71,4 @@ struct ContentView: View {
 // ...
 ```
 
-On utilise `@StateObject`, car il a l'avantage de ne pas être re-créé lors du rendu de la vue
+On utilise `@StateObject`, car il a l'avantage de ne pas être re-créé lors du rendu de la vue, contrairement à `@ObservedState`. On n'utilisera pas non plus `@State` qui n'est pas fait pour accueuillir des objets.
