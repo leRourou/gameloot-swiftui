@@ -26,4 +26,12 @@ struct Loot: Identifiable {
 ```
 
 ### 🔧 Exercice 2
-En plus d'avoir ajouté la fonction `addItem()`, vous avez également ajouté un bouton avec le composant `Button`
+En plus d'avoir ajouté la fonction `addItem()`, vous avez également ajouté un bouton avec le composant `Button`. Enfin, vous avez remplacé le composant `List` par un `ForEach` renvoyant un composant `Text` et encapsulé le tout dans un composant `List`.
+Cela a pour objectif de créer une liste de loots, mais avec comme différence que le premier élément de la liste est un bouton permettant d'appeler la fonction de rajout.
+
+
+### 🔧 Exercice 3
+Ce code ne fonctionne pas à cause du caractère immutable de la liste `loot`: cela signifie qu'elle ne peut pas être modifiée.
+En placant `@State` devant la liste `loot`, on déclare la liste comme un état de l'application. Cela signifie qu'elle peut être modifiée, et que sa modification entraînera un re-rendu du composant.
+
+
