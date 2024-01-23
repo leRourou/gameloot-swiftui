@@ -101,3 +101,142 @@ Button(action: {
         Text("Ajouter")
 })
 ```
+
+## Partie 2 - Un meilleur inventaire 👑
+### 🔧 Exercice 1
+Enum `LootItem` :
+```swift
+struct LootItem: Identifiable, Hashable {
+    let id: UUID = UUID()
+    var quantity: Int = 1
+    var name: String
+    var type: ItemType
+    var rarity: Rarity
+    var attackStrength: Int?
+    var game: Game
+
+    // On rajoute un item vide statique accessible sans instancier la classe.
+    static var emptyLootItem = LootItem(
+        name: "",
+        type: ItemType.unknown,
+        rarity: Rarity.common,
+        attackStrength: 0,
+        game: Game.emptyGame
+    )
+}
+```
+
+### 🔧 Exercice 2
+On créé une nouvelle structure :
+```swift
+struct InventoryListItem: View {
+    public var item: LootItem
+    var body: some View {
+        NavigationLink {
+            LootDetailView(item: item)
+        } label: {
+            HStack(alignment: .center, spacing: 3) {
+                Image(systemName: "circle.fill")
+                    .renderingMode(.template)
+                    .foregroundColor(item.rarity.getColor())
+                Text("\(item.type.getEmoji()) \(item.name)")
+            }
+        }
+    }
+}
+```
+L'erreur sur `Identifiable` apparaît car les éléments du ForEach doivent être uniques et idetnifiables par une valeur, comme un ID. Or, on ne passe aucune valeur de ce genre.
+```swift
+struct LootItem: Identifiable, Hashable {
+    let id: UUID = UUID() // On rajoute l'ID sous forme d'UUID, un type de données dont l'unicité est garantie
+    var quantity: Int = 1
+    var name: String
+    var type: ItemType
+    var rarity: Rarity
+    var attackStrength: Int?
+    var game: Game
+    
+    static var emptyLootItem = LootItem(
+        name: "",
+        type: ItemType.unknown,
+        rarity: Rarity.common,
+        attackStrength: 0,
+        game: Game.emptyGame
+    )
+}
+```
+
+### 🔧 Exercice 3
+```swift
+struct AddItemView: View {
+    @State private var lootItem: LootItem = LootItem.emptyLootItem
+    @State private var isAttackItem: Bool = false
+    @EnvironmentObject private var inventory: Inventory
+    @Environment(\.dismiss) private var dismiss
+    
+    var body: some View {
+        Form {
+            Section {
+                TextField("Nom de l'objet", text: $lootItem.name)
+                Picker("Rareté", selection: $lootItem.rarity) {
+                    ForEach(Rarity.allCases, id: \.self) { rarity in
+                        HStack(alignment: .center, spacing: 3) {
+                            Text(String(describing: rarity).capitalized)
+                        }
+                    }
+                }
+            }
+            Section {
+                Picker("Jeu", selection: $lootItem.game) {
+                    ForEach(MockData.availableGames, id: \.self) { game in
+                        Text(game.name)
+                    }
+                }
+                
+                
+                Stepper("Combien : \(lootItem.quantity)", value: $lootItem.quantity, in: 0...100, step: 1)}
+            
+            Section {
+                Toggle("Item d'attaque ?", isOn: Binding(
+                    get: { lootItem.attackStrength != nil },
+                    set: { newValue in
+                        if newValue {
+                            lootItem.attackStrength = 0
+                        } else {
+                            lootItem.attackStrength = nil
+                        }
+                    }
+                ))
+                
+                Group {
+                    if lootItem.attackStrength != nil {
+                        Stepper("Force d'attaque : \(lootItem.attackStrength!)", value: Binding(
+                            get: { lootItem.attackStrength ?? 0 },
+                            set: { newValue in lootItem.attackStrength = newValue }
+                        ), in: 0...100, step: 1)
+                    }
+                }
+            }
+
+            
+            Section {
+                Text("Type : " + $lootItem.type.wrappedValue.getEmoji())
+                Picker("Type", selection: $lootItem.type) {
+                    ForEach(ItemType.allCases, id: \.self) { tag in
+                        Text(tag.getEmoji())
+                    }
+                }.pickerStyle(.palette)
+                
+            }
+            
+            
+            Button(action: {
+                inventory.addItem(item: lootItem)
+                dismiss()
+            }, label: {
+                Text("Ajouter l'objet")
+            })
+        }
+    }
+}
+```
