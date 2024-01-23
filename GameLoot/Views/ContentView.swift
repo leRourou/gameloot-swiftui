@@ -23,7 +23,7 @@ struct ContentView: View {
         NavigationStack {
             List {
                 ForEach(inventory.loots, id: \.self) { item in
-                    InventoryListItem(item: item)
+                    LootRow(item: item)
                 }
             }
             .sheet(isPresented: $showAddItemView, content: {
@@ -44,21 +44,7 @@ struct ContentView: View {
     }
 }
 
-struct InventoryListItem: View {
-    public var item: LootItem
-    var body: some View {
-        NavigationLink {
-            LootDetailView(item: item)
-        } label: {
-            HStack(alignment: .center, spacing: 3) {
-                Image(systemName: "circle.fill")
-                    .renderingMode(.template)
-                    .foregroundColor(item.rarity.getColor())
-                Text("\(item.type.getEmoji()) \(item.name)")
-            }
-        }
-    }
-}
+
 
 
 #Preview {

@@ -21,6 +21,7 @@
 		058E5E6A2B5AAB610091D344 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E5E692B5AAB610091D344 /* Game.swift */; };
 		058E5E6E2B5AAFE30091D344 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E5E6D2B5AAFE30091D344 /* MockData.swift */; };
 		058E5E702B5ACE6B0091D344 /* LootDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E5E6F2B5ACE6B0091D344 /* LootDetailView.swift */; };
+		0592D30A2B5FCFFE0080CA45 /* LootRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0592D3092B5FCFFE0080CA45 /* LootRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		058E5E692B5AAB610091D344 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		058E5E6D2B5AAFE30091D344 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		058E5E6F2B5ACE6B0091D344 /* LootDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LootDetailView.swift; sourceTree = "<group>"; };
+		0592D3092B5FCFFE0080CA45 /* LootRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LootRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +90,6 @@
 		058E5E2B2B5A7B1C0091D344 = {
 			isa = PBXGroup;
 			children = (
-				058E5E6F2B5ACE6B0091D344 /* LootDetailView.swift */,
 				058E5E362B5A7B1C0091D344 /* GameLoot */,
 				058E5E472B5A7B1E0091D344 /* GameLootTests */,
 				058E5E512B5A7B1F0091D344 /* GameLootUITests */,
@@ -109,11 +110,10 @@
 		058E5E362B5A7B1C0091D344 /* GameLoot */ = {
 			isa = PBXGroup;
 			children = (
+				0592D3082B5FCF9E0080CA45 /* Views */,
 				058E5E6C2B5AACFD0091D344 /* Structs */,
 				058E5E6B2B5AACC80091D344 /* Enums */,
 				058E5E372B5A7B1C0091D344 /* GameLootApp.swift */,
-				058E5E392B5A7B1C0091D344 /* ContentView.swift */,
-				058E5E612B5A83DB0091D344 /* AddItemView.swift */,
 				058E5E3B2B5A7B1E0091D344 /* Assets.xcassets */,
 				058E5E3D2B5A7B1E0091D344 /* Preview Content */,
 				058E5E6D2B5AAFE30091D344 /* MockData.swift */,
@@ -162,6 +162,17 @@
 				058E5E632B5AA99A0091D344 /* LootItem.swift */,
 			);
 			path = Structs;
+			sourceTree = "<group>";
+		};
+		0592D3082B5FCF9E0080CA45 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				058E5E6F2B5ACE6B0091D344 /* LootDetailView.swift */,
+				058E5E392B5A7B1C0091D344 /* ContentView.swift */,
+				058E5E612B5A83DB0091D344 /* AddItemView.swift */,
+				0592D3092B5FCFFE0080CA45 /* LootRow.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,6 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0592D30A2B5FCFFE0080CA45 /* LootRow.swift in Sources */,
 				058E5E682B5AAB420091D344 /* Rarity.swift in Sources */,
 				058E5E3A2B5A7B1C0091D344 /* ContentView.swift in Sources */,
 				058E5E6A2B5AAB610091D344 /* Game.swift in Sources */,

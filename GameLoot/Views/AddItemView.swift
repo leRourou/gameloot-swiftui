@@ -25,6 +25,7 @@ struct AddItemView: View {
                     }
                 }
             }
+            
             Section {
                 Picker("Jeu", selection: $lootItem.game) {
                     ForEach(MockData.availableGames, id: \.self) { game in
@@ -32,32 +33,9 @@ struct AddItemView: View {
                     }
                 }
                 
-                
                 Stepper("Combien : \(lootItem.quantity)", value: $lootItem.quantity, in: 0...100, step: 1)}
             
-            Section {
-                Toggle("Item d'attaque ?", isOn: Binding(
-                    get: { lootItem.attackStrength != nil },
-                    set: { newValue in
-                        if newValue {
-                            lootItem.attackStrength = 0
-                        } else {
-                            lootItem.attackStrength = nil
-                        }
-                    }
-                ))
-                
-                Group {
-                    if lootItem.attackStrength != nil {
-                        Stepper("Force d'attaque : \(lootItem.attackStrength!)", value: Binding(
-                            get: { lootItem.attackStrength ?? 0 },
-                            set: { newValue in lootItem.attackStrength = newValue }
-                        ), in: 0...100, step: 1)
-                    }
-                }
-            }
-
-            
+            StrengthToggle(attackStrength: lootItem.attackStrength)
             Section {
                 Text("Type : " + $lootItem.type.wrappedValue.getEmoji())
                 Picker("Type", selection: $lootItem.type) {
@@ -67,7 +45,6 @@ struct AddItemView: View {
                 }.pickerStyle(.palette)
                 
             }
-            
             
             Button(action: {
                 inventory.addItem(item: lootItem)
@@ -79,6 +56,29 @@ struct AddItemView: View {
     }
 }
 
-#Preview {
-    AddItemView()
+struct StrengthToggle: View {
+    @State var attackStrength: Int?
+    var body: some View {
+        Section {
+            Toggle("Item d'attaque ?", isOn: Binding(
+                get: { attackStrength != nil },
+                set: { newValue in
+                    if newValue {
+                        attackStrength = 0
+                    } else {
+                        attackStrength = nil
+                    }
+                }
+            ))
+            
+            Group {
+                if attackStrength != nil {
+                    Stepper("Force d'attaque : \(attackStrength!)", value: Binding(
+                        get: { attackStrength ?? 0 },
+                        set: { newValue in attackStrength = newValue }
+                    ), in: 0...100, step: 1)
+                }
+            }
+        }
+    }
 }
