@@ -327,3 +327,50 @@ struct LootDetailView: View {
     }
 }
 ```
+
+## Partie 7 - Créer une animation
+### 🔧 Exercice 1 
+On commence par rajouter deux états au struc `LootDetailView` : 
+```swift
+@State var isAppeared: Bool = false
+@State var isIconClicked: Bool = false
+```
+Puis on rajoute à l'icône d'objet les différentes animations :
+```swift
+Rectangle()
+            .fill(Color(item.rarity.getColor()))
+            .frame(width: 150, height: 150)
+            .cornerRadius(20)
+            .overlay(
+                Text(item.type.getEmoji())
+                    .font(.system(size: 80))
+                    .foregroundColor(.white)
+            )
+            .padding(.bottom, 50)
+            .animation(.spring) {
+                $0.rotation3DEffect(Angle(degrees: isAppeared ? 360 : 0), axis: (x: 1, y: 0.5, z: 0))
+            }
+            .animation(.bouncy(duration: 1).delay(0.2)) {
+                $0.shadow(color: Color(item.rarity.getColor()), radius: isAppeared ? 100 : 0)
+            }
+            .onAppear {
+                Task {
+                    try await Task.sleep(nanoseconds:400_000_000)
+                    isAppeared.toggle()
+                }
+            }
+            .animation(.spring) {
+                $0.scaleEffect(isIconClicked ? 1.5: 1.0)
+            }
+            .onTapGesture {
+                isIconClicked.toggle()
+            }
+```
+On rajoute également une animation à l'élément "Unique":
+```swift
+.animation(.spring) {
+        $0.rotation3DEffect(Angle(degrees: isAppeared ? 0 : 90), axis: (x: 1, y: 0, z: 0))
+        .scaleEffect(isAppeared ? 1 : 0.5)
+}
+```
+Ici on n'a pas besoin de rajouter de `onAppear`, il nous suffit de reprendre la variable `isAppeared` existante, cela rajoute même le délai de 0.4s.
