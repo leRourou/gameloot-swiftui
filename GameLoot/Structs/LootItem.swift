@@ -21,7 +21,7 @@ struct LootItem: Identifiable, Hashable {
         name: "",
         type: ItemType.unknown,
         rarity: Rarity.common,
-        attackStrength: 0,
+        attackStrength: nil,
         game: Game.emptyGame
     )
 }

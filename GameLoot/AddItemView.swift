@@ -32,13 +32,31 @@ struct AddItemView: View {
                     }
                 }
                 
-            Stepper("Combien : \(lootItem.quantity)", value: $lootItem.quantity, in: 0...100, step: 1)
                 
-            }
+                Stepper("Combien : \(lootItem.quantity)", value: $lootItem.quantity, in: 0...100, step: 1)}
             
             Section {
-                Toggle("Item d'attaque ?", isOn: $isAttackItem)
+                Toggle("Item d'attaque ?", isOn: Binding(
+                    get: { lootItem.attackStrength != nil },
+                    set: { newValue in
+                        if newValue {
+                            lootItem.attackStrength = 0
+                        } else {
+                            lootItem.attackStrength = nil
+                        }
+                    }
+                ))
+                
+                Group {
+                    if lootItem.attackStrength != nil {
+                        Stepper("Force d'attaque : \(lootItem.attackStrength!)", value: Binding(
+                            get: { lootItem.attackStrength ?? 0 },
+                            set: { newValue in lootItem.attackStrength = newValue }
+                        ), in: 0...100, step: 1)
+                    }
+                }
             }
+
             
             Section {
                 Text("Type : " + $lootItem.type.wrappedValue.getEmoji())
@@ -46,11 +64,11 @@ struct AddItemView: View {
                     ForEach(ItemType.allCases, id: \.self) { tag in
                         Text(tag.getEmoji())
                     }
-                  }.pickerStyle(.palette)
-
+                }.pickerStyle(.palette)
+                
             }
-
-
+            
+            
             Button(action: {
                 inventory.addItem(item: lootItem)
                 dismiss()

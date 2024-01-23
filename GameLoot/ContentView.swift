@@ -23,22 +23,13 @@ struct ContentView: View {
         NavigationStack {
             List {
                 ForEach(inventory.loots, id: \.self) { item in
-                    NavigationLink {
-                        LootDetailView(item: item)
-                        } label: {
-                            HStack(alignment: .center, spacing: 3) {
-                                Image(systemName: "circle.fill")
-                                    .renderingMode(.template)
-                                    .foregroundColor(item.rarity.getColor())
-                                Text("\(item.type.getEmoji()) \(item.name)")
-                            }
-                        }
+                    InventoryListItem(item: item)
                 }
             }
             .sheet(isPresented: $showAddItemView, content: {
-                    AddItemView()
-                          .environmentObject(inventory)
-                })
+                AddItemView()
+                    .environmentObject(inventory)
+            })
             .navigationBarTitle("👝 Inventory")
             .toolbar(content: {
                 ToolbarItem(placement: ToolbarItemPlacement.automatic) {
@@ -52,6 +43,24 @@ struct ContentView: View {
         }
     }
 }
+
+struct InventoryListItem: View {
+    public var item: LootItem
+    var body: some View {
+        NavigationLink {
+            LootDetailView(item: item)
+        } label: {
+            HStack(alignment: .center, spacing: 3) {
+                Image(systemName: "circle.fill")
+                    .renderingMode(.template)
+                    .foregroundColor(item.rarity.getColor())
+                Text("\(item.type.getEmoji()) \(item.name)")
+            }
+        }
+    }
+}
+
+
 #Preview {
     ContentView()
 }
