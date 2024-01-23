@@ -41,13 +41,26 @@ struct LootDetailView: View {
                     )
             }
         }
-        Group {
-            Text("try")
+        VStack() {
+            List() {
+                HStack {
+                    Text("In-game: \(item.name)")
+                }
+                HStack {
+                    Text("Puissance (ATQ): \(item.attackStrength!)")
+                }
+                HStack {
+                    Text("Possédé(s): \(item.quantity)")
+                }
+                HStack {
+                    Text("Rareté : \(String(item.rarity))")
+                }
+            }
         }
     }
 }
 
 #Preview {
-    LootDetailView(item: MockData.lootItemsMock[10])
+    LootDetailView(item: MockData.lootItemsMock[5])
 }
 
