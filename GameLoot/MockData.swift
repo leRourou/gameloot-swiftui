@@ -26,6 +26,6 @@ class MockData {
         LootItem(name: "Dagger of Legends", type: .dagger, rarity: .uncommon, attackStrength: 28, game: availableGames[1]),
         LootItem(name: "Bow of Shadows", type: .bow, rarity: .rare, attackStrength: 32, game: availableGames[1]),
         LootItem(name: "Ring of Power", type: .ring, rarity: .epic, attackStrength: 36, game: availableGames[1]),
-        LootItem(name: "Unknown Artifact", type: .unknown, rarity: .unique, attackStrength: 42, game: availableGames[1]),
+        LootItem(name: "Unknown Artifact", type: .unknown, rarity: .unique, attackStrength: 42, game: Game.emptyGame),
     ]
 }

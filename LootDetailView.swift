@@ -41,19 +41,48 @@ struct LootDetailView: View {
                     )
             }
         }
-        VStack() {
+        VStack(
+        ) {
             List() {
-                HStack {
-                    Text("In-game: \(item.name)")
-                }
-                HStack {
-                    Text("Puissance (ATQ): \(item.attackStrength!)")
-                }
-                HStack {
-                    Text("Possédé(s): \(item.quantity)")
-                }
-                HStack {
-                    Text("Rareté : \(String(item.rarity))")
+                Section(
+                    header: Text("INFORMATIONS")
+                ) {
+                    HStack {
+                        if let cover = item.game.coverName {
+                            Image(cover)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 58)
+                                .clipShape(.rect(cornerRadius: 4))
+
+                        } else {
+                            Image(systemName: "rectangle.slash")
+                                .scaledToFit()
+                                .frame(height: 58)
+                                .padding(Edge.Set.horizontal, 8)
+                                .background(
+                                    LinearGradient(gradient: Gradient(colors: [.gray]), startPoint: .top, endPoint: .bottom)
+                                )
+                                .clipShape(.rect(cornerRadius: 4))
+                                .foregroundStyle(Color.black)
+                                .opacity(0.4)
+
+                        }
+
+                        Text("Game: \(item.game.name)")
+                    }
+                    HStack {
+                        Text("In-game: \(item.name)")
+                    }
+                    HStack {
+                        Text("Puissance (ATQ): \(item.attackStrength!)")
+                    }
+                    HStack {
+                        Text("Possédé(s): \(item.quantity)")
+                    }
+                    HStack {
+                        Text("Rareté : \(item.rarity.getString())")
+                    }
                 }
             }
         }
