@@ -16,12 +16,18 @@ struct LootItem: Identifiable, Hashable {
     var rarity: Rarity
     var attackStrength: Int?
     var game: Game
+    var image: Image?
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
     
     static var emptyLootItem = LootItem(
         name: "",
         type: ItemType.unknown,
         rarity: Rarity.common,
         attackStrength: nil,
-        game: Game.emptyGame
+        game: Game.emptyGame,
+        image: Image(systemName: "rectangle")
     )
 }

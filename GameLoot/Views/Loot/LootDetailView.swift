@@ -8,12 +8,19 @@
 import SwiftUI
 
 struct LootDetailView: View {
-    public var item: LootItem
+    @State public var item: LootItem
+    @State public var isEditPresented = false
+    @EnvironmentObject private var inventory: Inventory
     
+    func editItem(itemToEdit: LootItem) {
+        inventory.editItem(item: itemToEdit)
+        item = itemToEdit
+    }
+
     var body: some View {
-        LootDetailIcon(item: item)
-        VStack(
+        NavigationStack(
         ) {
+            LootDetailIcon(item: item)
             List() {
                 Section(
                     header: Text("INFORMATIONS")
@@ -58,8 +65,28 @@ struct LootDetailView: View {
                     HStack {
                         Text("Rareté : \(item.rarity.getString())")
                     }
+                    HStack {
+                        item.image
+                    }
                 }
             }
+        }
+        .toolbar(content: {
+            ToolbarItem(placement: ToolbarItemPlacement.automatic) {
+                Button(action: {
+                    isEditPresented.toggle()
+                }, label: {
+                    Image(systemName: "pencil")
+                    Text("Edit")
+                })
+            }
+        })
+        .sheet(isPresented: $isEditPresented) {
+            AddOrEditItemView(
+                lootItem: item,
+                isEditMode: true,
+                editItem: { editItem(itemToEdit: $0 )}
+            )
         }
     }
 }
@@ -68,7 +95,7 @@ struct LootDetailIcon: View {
     public var item: LootItem
     @State var isAppeared: Bool = false
     @State var isIconClicked: Bool = false
-
+    
     var body: some View {
         Rectangle()
             .fill(Color(item.rarity.getColor()))
@@ -135,8 +162,4 @@ struct LootDetailUnique: View {
                 }
         }
     }
-}
-
-#Preview {
-    LootDetailView(item: MockData.lootItemsMock[5])
 }

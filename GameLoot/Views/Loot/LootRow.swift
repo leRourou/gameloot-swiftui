@@ -9,9 +9,13 @@ import SwiftUI
 
 struct LootRow: View {
     public var item: LootItem
+    @EnvironmentObject private var inventory: Inventory
+
     var body: some View {
         NavigationLink {
             LootDetailView(item: item)
+                .environmentObject(inventory)
+
         } label: {
             HStack(alignment: .center, spacing: 3) {
                 Image(systemName: "circle.fill")
@@ -23,6 +27,3 @@ struct LootRow: View {
     }
 }
 
-#Preview {
-    LootRow(item: MockData.lootItemsMock[0])
-}

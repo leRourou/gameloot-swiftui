@@ -7,45 +7,35 @@
 
 import SwiftUI
 
-class Inventory: ObservableObject {
-    @Published var loots : [LootItem] = MockData.lootItemsMock
-    
-    func addItem(item: LootItem) {
-        loots.append(item)
-    }
+enum LooterFeature {
+    case loot
+    case wishList
+    case profile
 }
 
 struct ContentView: View {
-    @StateObject var inventory = Inventory()
-    @State var showAddItemView : Bool = false;
+    @State private var selectedFeature: LooterFeature = .loot
     
     var body: some View {
-        NavigationStack {
-            List {
-                ForEach(inventory.loots, id: \.self) { item in
-                    LootRow(item: item)
+        TabView(selection: $selectedFeature) {
+            LootView()
+                .tabItem {
+                    Label("Loot", systemImage: "bag.fill")
                 }
-            }
-            .sheet(isPresented: $showAddItemView, content: {
-                AddItemView()
-                    .environmentObject(inventory)
-            })
-            .navigationBarTitle("👝 Inventory")
-            .toolbar(content: {
-                ToolbarItem(placement: ToolbarItemPlacement.automatic) {
-                    Button(action: {
-                        showAddItemView.toggle()
-                    }, label: {
-                        Image(systemName: "plus.circle.fill")
-                    })
+                .tag(LooterFeature.loot)
+            WishListView()
+                .tabItem {
+                    Label("Wishlist", systemImage: "heart.fill")
                 }
-            })
+                .tag(LooterFeature.wishList)
+            ProfileView()
+                .tabItem {
+                    Label("Profil", systemImage: "person.fill")
+                }
+                .tag(LooterFeature.profile)
         }
     }
 }
-
-
-
 
 #Preview {
     ContentView()
