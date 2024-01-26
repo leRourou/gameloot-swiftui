@@ -57,7 +57,8 @@ struct AddItemView: View {
 }
 
 struct StrengthToggle: View {
-    @State var attackStrength: Int?
+    @State private var attackStrength: Int? = nil
+    
     var body: some View {
         Section {
             Toggle("Item d'attaque ?", isOn: Binding(
@@ -71,13 +72,11 @@ struct StrengthToggle: View {
                 }
             ))
             
-            Group {
-                if attackStrength != nil {
-                    Stepper("Force d'attaque : \(attackStrength!)", value: Binding(
-                        get: { attackStrength ?? 0 },
-                        set: { newValue in attackStrength = newValue }
-                    ), in: 0...100, step: 1)
-                }
+            if let strength = attackStrength {
+                Stepper("Force d'attaque : \(strength)", value: Binding(
+                    get: { strength },
+                    set: { newValue in attackStrength = Int(newValue) }
+                ), in: 0...100, step: 1)
             }
         }
     }

@@ -46,7 +46,11 @@ struct LootDetailView: View {
                         Text("In-game: \(item.name)")
                     }
                     HStack {
-                        Text("Puissance (ATQ): \(item.attackStrength!)")
+                        if let attackStrength = item.attackStrength {
+                            Text("Puissance (ATQ): \(attackStrength)")
+                        } else {
+                            Text("Puissance nulle")
+                        }
                     }
                     HStack {
                         Text("Possédé(s): \(item.quantity)")
