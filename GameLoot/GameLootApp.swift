@@ -9,9 +9,18 @@ import SwiftUI
 
 @main
 struct GameLootApp: App {
+    @AppStorage("isOnboardingDone") var isOnboardingDone: Bool = false
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if isOnboardingDone {
+                ContentView()
+                Button("setOnboarding") {
+                    isOnboardingDone = false
+                }
+            } else {
+                OnboardingView(setOnboardingDone: {self.isOnboardingDone = true})
+            }
         }
     }
 }

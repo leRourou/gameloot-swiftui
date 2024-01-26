@@ -22,6 +22,8 @@
 		058E5E6E2B5AAFE30091D344 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E5E6D2B5AAFE30091D344 /* MockData.swift */; };
 		058E5E702B5ACE6B0091D344 /* LootDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058E5E6F2B5ACE6B0091D344 /* LootDetailView.swift */; };
 		0592D30A2B5FCFFE0080CA45 /* LootRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0592D3092B5FCFFE0080CA45 /* LootRow.swift */; };
+		05E229592B6398AB00B853E1 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E229582B6398AB00B853E1 /* OnboardingView.swift */; };
+		05E2295B2B639A0600B853E1 /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E2295A2B639A0600B853E1 /* OnboardingPageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,8 @@
 		058E5E6D2B5AAFE30091D344 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		058E5E6F2B5ACE6B0091D344 /* LootDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LootDetailView.swift; sourceTree = "<group>"; };
 		0592D3092B5FCFFE0080CA45 /* LootRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LootRow.swift; sourceTree = "<group>"; };
+		05E229582B6398AB00B853E1 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		05E2295A2B639A0600B853E1 /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +175,8 @@
 				058E5E392B5A7B1C0091D344 /* ContentView.swift */,
 				058E5E612B5A83DB0091D344 /* AddItemView.swift */,
 				0592D3092B5FCFFE0080CA45 /* LootRow.swift */,
+				05E229582B6398AB00B853E1 /* OnboardingView.swift */,
+				05E2295A2B639A0600B853E1 /* OnboardingPageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -311,10 +317,12 @@
 				058E5E6A2B5AAB610091D344 /* Game.swift in Sources */,
 				058E5E702B5ACE6B0091D344 /* LootDetailView.swift in Sources */,
 				058E5E622B5A83DB0091D344 /* AddItemView.swift in Sources */,
+				05E2295B2B639A0600B853E1 /* OnboardingPageView.swift in Sources */,
 				058E5E662B5AAA290091D344 /* ItemType.swift in Sources */,
 				058E5E642B5AA99A0091D344 /* LootItem.swift in Sources */,
 				058E5E382B5A7B1C0091D344 /* GameLootApp.swift in Sources */,
 				058E5E6E2B5AAFE30091D344 /* MockData.swift in Sources */,
+				05E229592B6398AB00B853E1 /* OnboardingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
